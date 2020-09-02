@@ -1,3 +1,11 @@
+### This is a temporary proof of concept fork of WLED that implements multi-pin output. Only setup for use with ESP32 devices. 8-pin output is working. RGBW Strips will not work currently. Only RGB like ws2812b.
+
+### Adjust number of output pins, and led's on each strip in NpbWrapper.h and build using Platformio. Then set the WLED gui LED count to the total LED count in your system.
+#  
+#  
+#  
+#  
+
 <p align="center">
   <img src="/images/wled_logo_akemi.png">
   <a href="https://github.com/Aircoookie/WLED/releases"><img src="https://img.shields.io/github/release/Aircoookie/WLED.svg?style=flat-square"></a>
