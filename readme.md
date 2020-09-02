@@ -1,6 +1,6 @@
-### This is a temporary proof of concept fork of WLED that implements multi-pin output. Only setup for use with ESP32 devices. 8-pin output is working. RGBW Strips will not work currently. Only RGB like ws2812b.
+### This is a temporary proof of concept fork of WLED that implements multi-pin output. Up to 8-pin output is working. RGBW Strips will not work currently. Only RGB like ws2812b.
 
-### Adjust number of output pins, and led's on each strip in NpbWrapper.h and build using Platformio. Then set the WLED gui LED count to the total LED count in your system.
+### In NpbWrapper.h adjust: NUM_STRIPS to the total pins you want to output on. Set the qty of LEDS per strip (STRIPx_LEDCOUNT). Set what GPIO pin# to output on. Then build using Platformio. Then set the WLED gui LED count to the total LED count in your system.
 #  
 #  
 #  
