@@ -60,6 +60,17 @@
 #define STRIP7_LEDCOUNT 18
 #define STRIP8_LEDCOUNT 18
 
+// What pixelmethod to use on each strip?
+// no strip1 override here.  for strip1, use the default PIXELMETHOD for the platform
+#define STRIP2_PIXELMETHOD NeoEsp32Rmt1Ws2812xMethod    // define what method you want to use to drive the extra pins. For esp32 RMT 0-7 works best.
+#define STRIP3_PIXELMETHOD NeoEsp32Rmt2Ws2812xMethod
+#define STRIP4_PIXELMETHOD NeoEsp32Rmt3Ws2812xMethod
+#define STRIP5_PIXELMETHOD NeoEsp32Rmt4Ws2812xMethod
+#define STRIP6_PIXELMETHOD NeoEsp32Rmt5Ws2812xMethod
+#define STRIP7_PIXELMETHOD NeoEsp32Rmt6Ws2812xMethod
+#define STRIP8_PIXELMETHOD NeoEsp32Rmt7Ws2812xMethod
+
+
 //END CONFIGURATION
 
 // do calculations to find the  starting LED index position of each strip:
@@ -298,31 +309,31 @@ public:
         _pGrb = new NeoPixelBrightnessBus<PIXELFEATURE3,PIXELMETHOD>(STRIP1_LEDCOUNT, STRIP1_PIN);                   // strip1
         _pGrb->Begin();  // strip1
         #if NUM_STRIPS > 1
-          _pGrb2 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt1Ws2812xMethod>(STRIP2_LEDCOUNT, STRIP2_PIN); // strip2
+          _pGrb2 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP2_PIXELMETHOD>(STRIP2_LEDCOUNT, STRIP2_PIN); // strip2
           _pGrb2->Begin(); // strip2
         #endif
         #if NUM_STRIPS > 2
-          _pGrb3 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt2Ws2812xMethod>(STRIP3_LEDCOUNT, STRIP3_PIN); // strip3
+          _pGrb3 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP3_PIXELMETHOD>(STRIP3_LEDCOUNT, STRIP3_PIN); // strip3
           _pGrb3->Begin(); // strip3
         #endif
         #if NUM_STRIPS > 3
-          _pGrb4 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt3Ws2812xMethod>(STRIP4_LEDCOUNT, STRIP4_PIN); // strip4
+          _pGrb4 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP4_PIXELMETHOD>(STRIP4_LEDCOUNT, STRIP4_PIN); // strip4
           _pGrb4->Begin(); // strip4
         #endif
         #if NUM_STRIPS > 4
-          _pGrb5 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt4Ws2812xMethod>(STRIP5_LEDCOUNT, STRIP5_PIN); // strip5
+          _pGrb5 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP5_PIXELMETHOD>(STRIP5_LEDCOUNT, STRIP5_PIN); // strip5
           _pGrb5->Begin(); // strip5
         #endif
         #if NUM_STRIPS > 5
-          _pGrb6 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt5Ws2812xMethod>(STRIP6_LEDCOUNT, STRIP6_PIN); // strip6
+          _pGrb6 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP6_PIXELMETHOD>(STRIP6_LEDCOUNT, STRIP6_PIN); // strip6
           _pGrb6->Begin(); // strip6
         #endif
         #if NUM_STRIPS > 6
-          _pGrb7 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt6Ws2812xMethod>(STRIP7_LEDCOUNT, STRIP7_PIN); // strip7
+          _pGrb7 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP7_PIXELMETHOD>(STRIP7_LEDCOUNT, STRIP7_PIN); // strip7
           _pGrb7->Begin(); // strip7
         #endif
         #if NUM_STRIPS > 7
-          _pGrb8 = new NeoPixelBrightnessBus<PIXELFEATURE3, NeoEsp32Rmt7Ws2812xMethod>(STRIP8_LEDCOUNT, STRIP8_PIN); // strip8
+          _pGrb8 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP8_PIXELMETHOD>(STRIP8_LEDCOUNT, STRIP8_PIN); // strip8
           _pGrb8->Begin(); // strip8
         #endif
       #endif
@@ -597,25 +608,25 @@ private:
   // have a member for every possible type
   NeoPixelBrightnessBus<PIXELFEATURE3,PIXELMETHOD>*  _pGrb;                   //strip1
   #if NUM_STRIPS > 1
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt1Ws2812xMethod>*  _pGrb2;  //strip2
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP2_PIXELMETHOD>*  _pGrb2;  //strip2
   #endif
   #if NUM_STRIPS > 2
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt2Ws2812xMethod>*  _pGrb3;  //strip3
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP3_PIXELMETHOD>*  _pGrb3;  //strip3
   #endif
   #if NUM_STRIPS > 3
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt3Ws2812xMethod>*  _pGrb4;  //strip4
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP4_PIXELMETHOD>*  _pGrb4;  //strip4
   #endif
   #if NUM_STRIPS > 4
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt4Ws2812xMethod>*  _pGrb5;  //strip5
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP5_PIXELMETHOD>*  _pGrb5;  //strip5
   #endif
   #if NUM_STRIPS > 5
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt5Ws2812xMethod>*  _pGrb6;  //strip6
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP6_PIXELMETHOD>*  _pGrb6;  //strip6
   #endif
   #if NUM_STRIPS > 6
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt6Ws2812xMethod>*  _pGrb7;  //strip7
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP7_PIXELMETHOD>*  _pGrb7;  //strip7
   #endif
   #if NUM_STRIPS > 7
-    NeoPixelBrightnessBus<PIXELFEATURE3,NeoEsp32Rmt7Ws2812xMethod>*  _pGrb8;  //strip8
+    NeoPixelBrightnessBus<PIXELFEATURE3,STRIP8_PIXELMETHOD>*  _pGrb8;  //strip8
   #endif
   NeoPixelBrightnessBus<PIXELFEATURE4,PIXELMETHOD>* _pGrbw;
 
