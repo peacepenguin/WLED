@@ -61,7 +61,7 @@
 #define STRIP8_LEDCOUNT 18
 
 // What pixelmethod to use on each strip?
-// no strip1 override here.  for strip1, use the default PIXELMETHOD for the platform
+#define STRIP1_PIXELMETHOD NeoEsp32Rmt0Ws2812xMethod    // the board specific PIXELMETHOD variable is being ignored now, so make sure it's set here!
 #define STRIP2_PIXELMETHOD NeoEsp32Rmt1Ws2812xMethod    // define what method you want to use to drive the extra pins. For esp32 RMT 0-7 works best.
 #define STRIP3_PIXELMETHOD NeoEsp32Rmt2Ws2812xMethod
 #define STRIP4_PIXELMETHOD NeoEsp32Rmt3Ws2812xMethod
@@ -306,7 +306,7 @@ public:
       #if defined(USE_APA102) || defined(USE_WS2801) || defined(USE_LPD8806) || defined(USE_P9813)
         _pGrb = new NeoPixelBrightnessBus<PIXELFEATURE3,PIXELMETHOD>(countPixels, CLKPIN, DATAPIN);
       #else
-        _pGrb = new NeoPixelBrightnessBus<PIXELFEATURE3,PIXELMETHOD>(STRIP1_LEDCOUNT, STRIP1_PIN);                   // strip1
+        _pGrb = new NeoPixelBrightnessBus<PIXELFEATURE3,STRIP1_PIXELMETHOD>(STRIP1_LEDCOUNT, STRIP1_PIN);     // strip1
         _pGrb->Begin();  // strip1
         #if NUM_STRIPS > 1
           _pGrb2 = new NeoPixelBrightnessBus<PIXELFEATURE3, STRIP2_PIXELMETHOD>(STRIP2_LEDCOUNT, STRIP2_PIN); // strip2
