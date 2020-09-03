@@ -606,7 +606,7 @@ private:
   NeoPixelType _type;
 
   // have a member for every possible type
-  NeoPixelBrightnessBus<PIXELFEATURE3,PIXELMETHOD>*  _pGrb;                   //strip1
+  NeoPixelBrightnessBus<PIXELFEATURE3,STRIP1_PIXELMETHOD>*  _pGrb;     //strip1
   #if NUM_STRIPS > 1
     NeoPixelBrightnessBus<PIXELFEATURE3,STRIP2_PIXELMETHOD>*  _pGrb2;  //strip2
   #endif
