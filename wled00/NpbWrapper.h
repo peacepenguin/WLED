@@ -41,7 +41,7 @@
 #define NUM_STRIPS 2
 
 // What pins to use:
-#define STRIP1_PIN LEDPIN  // first strip uses same pin as default LEDPIN output pin for whatever platform is being used.
+#define STRIP1_PIN 2 // manually specify all pins now, avoid issues with some boards by changing pins.  2  is default LEDPIN for esp32dev boards.
 #define STRIP2_PIN 13
 #define STRIP3_PIN 12
 #define STRIP4_PIN 14
