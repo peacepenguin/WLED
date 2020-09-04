@@ -51,7 +51,7 @@
 #define STRIP8_PIN 33
 
 // How many LEDs are on each strip:
-#define STRIP1_LEDCOUNT 54
+#define STRIP1_LEDCOUNT 18
 #define STRIP2_LEDCOUNT 18
 #define STRIP3_LEDCOUNT 18
 #define STRIP4_LEDCOUNT 18
