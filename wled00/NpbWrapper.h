@@ -38,13 +38,13 @@
 #endif
 
 // How many strips will be connected:
-#define NUM_STRIPS 2
+#define NUM_STRIPS 4
 
 // What pins to use:
 #define STRIP1_PIN 2 // manually specify all pins now, avoid issues with some boards by changing pins.  2  is default LEDPIN for esp32dev boards.
-#define STRIP2_PIN 13
-#define STRIP3_PIN 12
-#define STRIP4_PIN 14
+#define STRIP2_PIN 3
+#define STRIP3_PIN 1
+#define STRIP4_PIN 16
 #define STRIP5_PIN 27
 #define STRIP6_PIN 26
 #define STRIP7_PIN 25
@@ -63,7 +63,7 @@
 // What pixelmethod to use on each strip?
 #define STRIP1_PIXELMETHOD NeoEsp32Rmt0Ws2812xMethod    // the board specific PIXELMETHOD variable is being ignored now, so make sure it's set here!
 #define STRIP2_PIXELMETHOD NeoEsp32Rmt1Ws2812xMethod    // define what method you want to use to drive the extra pins. For esp32 RMT 0-7 works best.
-#define STRIP3_PIXELMETHOD NeoEsp32Rmt2Ws2812xMethod
+#define STRIP3_PIXELMETHOD NeoEsp32Rmt2Ws2812xMethod    // May be NeoWs2811Method for neopixels
 #define STRIP4_PIXELMETHOD NeoEsp32Rmt3Ws2812xMethod
 #define STRIP5_PIXELMETHOD NeoEsp32Rmt4Ws2812xMethod
 #define STRIP6_PIXELMETHOD NeoEsp32Rmt5Ws2812xMethod
