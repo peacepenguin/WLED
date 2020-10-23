@@ -41,11 +41,13 @@
 #define RLYMDE  1  //mode for relay, 0: LOW if LEDs are on 1: HIGH if LEDs are on
 #endif
 
-// How many strips will be connected:
+// How many strips will be connected. currently up to 8 strips is possible.
 #define NUM_STRIPS 2
 
+// multipin mod configuration:
+
 // What pins to use:
-#define STRIP1_PIN 2 // manually specify all pins now, avoid issues with some boards by changing pins.  2  is default LEDPIN for esp32dev boards.
+#define STRIP1_PIN 2 // manually specify all pins here.  2  is default LEDPIN for esp32dev boards.
 #define STRIP2_PIN 13
 #define STRIP3_PIN 12
 #define STRIP4_PIN 14
@@ -66,7 +68,7 @@
 
 // What pixelmethod to use on each strip?
 #define STRIP1_PIXELMETHOD NeoEsp32Rmt0Ws2812xMethod    // the board specific PIXELMETHOD variable is being ignored now, so make sure it's set here!
-#define STRIP2_PIXELMETHOD NeoEsp32Rmt1Ws2812xMethod    // define what method you want to use to drive the extra pins. For esp32 RMT 0-7 works best.
+#define STRIP2_PIXELMETHOD NeoEsp32Rmt1Ws2812xMethod    // define what method you want to use to drive each strip. For esp32 RMT 0-7 works best.
 #define STRIP3_PIXELMETHOD NeoEsp32Rmt2Ws2812xMethod
 #define STRIP4_PIXELMETHOD NeoEsp32Rmt3Ws2812xMethod
 #define STRIP5_PIXELMETHOD NeoEsp32Rmt4Ws2812xMethod
@@ -131,7 +133,7 @@
 #endif
 
 #if NUM_STRIPS == 8
-#define NUM_LEDS STRIP8_STARTLED + STRIP8_LEDCOUNT
+#define NUM_LEDS STRIP9_STARTLED
 #endif
 
 
