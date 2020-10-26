@@ -396,6 +396,18 @@ void WS2812FX::setBrightness(uint8_t b) {
     {
       _segments[i].setOption(SEG_OPTION_FREEZE, false);
     }
+    #if LEDPIN == LED_BUILTIN
+      if (!shouldStartBus)
+        shouldStartBus = true;
+    #endif
+  } else {
+    #if LEDPIN == LED_BUILTIN
+      if (shouldStartBus) {
+        shouldStartBus = false;
+        const uint8_t ty = _useRgbw ? 2 : 1;
+        bus->Begin((NeoPixelType)ty, _lengthRaw);
+      }
+    #endif
   }
   if (SEGENV.next_time > millis() + 22 && millis() - _lastShow > MIN_SHOW_DELAY) show();//apply brightness change immediately if no refresh soon
 }
@@ -529,6 +541,7 @@ void WS2812FX::resetSegments() {
   _segments[0].colors[0] = DEFAULT_COLOR;
   _segments[0].start = 0;
   _segments[0].speed = DEFAULT_SPEED;
+  _segments[0].intensity = DEFAULT_INTENSITY;
   _segments[0].stop = _length;
   _segments[0].grouping = 1;
   _segments[0].setOption(SEG_OPTION_SELECTED, 1);
@@ -541,6 +554,8 @@ void WS2812FX::resetSegments() {
     _segments[i].grouping = 1;
     _segments[i].setOption(SEG_OPTION_ON, 1);
     _segments[i].opacity = 255;
+    _segments[i].speed = DEFAULT_SPEED;
+    _segments[i].intensity = DEFAULT_INTENSITY;
     _segment_runtimes[i].reset();
   }
   _segment_runtimes[0].reset();
@@ -697,6 +712,32 @@ uint16_t WS2812FX::triwave16(uint16_t in)
 }
 
 /*
+ * Generates a tristate square wave w/ attac & decay 
+ * @param x input value 0-255
+ * @param pulsewidth 0-127 
+ * @param attdec attac & decay, max. pulsewidth / 2
+ * @returns signed waveform value
+ */
+int8_t WS2812FX::tristate_square8(uint8_t x, uint8_t pulsewidth, uint8_t attdec) {
+  int8_t a = 127;
+  if (x > 127) {
+    a = -127;
+    x -= 127;
+  }
+
+  if (x < attdec) { //inc to max
+    return (int16_t) x * a / attdec;
+  }
+  else if (x < pulsewidth - attdec) { //max
+    return a;
+  }  
+  else if (x < pulsewidth) { //dec to 0
+    return (int16_t) (pulsewidth - x) * a / attdec;
+  }
+  return 0;
+}
+
+/*
  * Put a value 0 to 255 in to get a color value.
  * The colours are a transition r -> g -> b -> back to r
  * Inspired by the Adafruit examples.
@@ -841,7 +882,7 @@ void WS2812FX::handle_palette(void)
       load_gradient_palette(paletteIndex -13);
   }
   
-  if (singleSegmentMode && paletteFade) //only blend if just one segment uses FastLED mode
+  if (singleSegmentMode && paletteFade && SEGENV.call > 0) //only blend if just one segment uses FastLED mode
   {
     nblendPaletteTowardPalette(currentPalette, targetPalette, 48);
   } else

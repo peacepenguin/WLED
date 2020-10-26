@@ -15,13 +15,24 @@ void shortPressAction()
   }
 }
 
+bool isButtonPressed()
+{
+  #ifdef BTNPIN
+    if (digitalRead(BTNPIN) == LOW) return true;
+  #endif
+  #ifdef TOUCHPIN
+    if (touchRead(TOUCHPIN) <= TOUCH_THRESHOLD) return true;
+  #endif
+  return false;
+}
+
 
 void handleButton()
 {
-#ifdef BTNPIN
+#if defined(BTNPIN) || defined(TOUCHPIN)
   if (!buttonEnabled) return;
-  
-  if (digitalRead(BTNPIN) == LOW) //pressed
+
+  if (isButtonPressed()) //pressed
   {
     if (!buttonPressedBefore) buttonPressedTime = millis();
     buttonPressedBefore = true;
@@ -37,7 +48,7 @@ void handleButton()
       }
     }
   }
-  else if (digitalRead(BTNPIN) == HIGH && buttonPressedBefore) //released
+  else if (!isButtonPressed() && buttonPressedBefore) //released
   {
     long dur = millis() - buttonPressedTime;
     if (dur < 50) {buttonPressedBefore = false; return;} //too short "press", debounce
@@ -76,7 +87,7 @@ void handleIO()
   {
     lastOnTime = millis();
     if (offMode)
-    { 
+    {
       #if RLYPIN >= 0
        digitalWrite(RLYPIN, RLYMDE);
       #endif
@@ -84,9 +95,15 @@ void handleIO()
     }
   } else if (millis() - lastOnTime > 600)
   {
-    #if RLYPIN >= 0
-     if (!offMode) digitalWrite(RLYPIN, !RLYMDE);
-    #endif
+     if (!offMode) {
+      #if LEDPIN == LED_BUILTIN
+        pinMode(LED_BUILTIN, OUTPUT);
+        digitalWrite(LED_BUILTIN, HIGH);
+      #endif
+      #if RLYPIN >= 0
+       digitalWrite(RLYPIN, !RLYMDE);
+      #endif
+     }
     offMode = true;
   }
 
