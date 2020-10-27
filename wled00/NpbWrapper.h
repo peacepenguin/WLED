@@ -56,20 +56,20 @@
 #define STRIP8_PIN 33
 
 // How many LEDs are on each strip:
-#define STRIP1_LEDCOUNT 18
-#define STRIP2_LEDCOUNT 18
-#define STRIP3_LEDCOUNT 18
-#define STRIP4_LEDCOUNT 18
+#define STRIP1_LEDCOUNT 50
+#define STRIP2_LEDCOUNT 50
+#define STRIP3_LEDCOUNT 50
+#define STRIP4_LEDCOUNT 50
 #define STRIP5_LEDCOUNT 18
 #define STRIP6_LEDCOUNT 18
 #define STRIP7_LEDCOUNT 18
 #define STRIP8_LEDCOUNT 18
 
 // What pixelmethod to use on each strip?
-#define STRIP1_PIXELMETHOD NeoEsp32Rmt0Ws2812xMethod    // the board specific PIXELMETHOD variable is being ignored now, so make sure it's set here!
-#define STRIP2_PIXELMETHOD NeoEsp32Rmt1Ws2812xMethod    // define what method you want to use to drive the extra pins. For esp32 RMT 0-7 works best.
-#define STRIP3_PIXELMETHOD NeoEsp32Rmt2Ws2812xMethod    // May be NeoWs2811Method for neopixels
-#define STRIP4_PIXELMETHOD NeoEsp32Rmt3Ws2812xMethod
+#define STRIP1_PIXELMETHOD NeoWs2811Method    // the board specific PIXELMETHOD variable is being ignored now, so make sure it's set here!
+#define STRIP2_PIXELMETHOD NeoWs2811Method    // define what method you want to use to drive the extra pins. For esp32 RMT 0-7 works best.
+#define STRIP3_PIXELMETHOD NeoWs2811Method    // May be NeoWs2811Method for neopixels
+#define STRIP4_PIXELMETHOD NeoWs2811Method
 #define STRIP5_PIXELMETHOD NeoEsp32Rmt4Ws2812xMethod
 #define STRIP6_PIXELMETHOD NeoEsp32Rmt5Ws2812xMethod
 #define STRIP7_PIXELMETHOD NeoEsp32Rmt6Ws2812xMethod
