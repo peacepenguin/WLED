@@ -47,8 +47,8 @@
 
 // What pins to use:
 #define STRIP1_PIN 16 // manually specify all pins now, avoid issues with some boards by changing pins.  2  is default LEDPIN for esp32dev boards.
-#define STRIP2_PIN 3
-#define STRIP3_PIN 1
+#define STRIP2_PIN 1
+#define STRIP3_PIN 3
 #define STRIP4_PIN 26
 #define STRIP5_PIN 27
 #define STRIP6_PIN 26
