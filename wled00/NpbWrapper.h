@@ -876,6 +876,7 @@ public:
               break;
           #endif
         }
+        break;
       case NeoPixelType_Grbw: 
         switch (indexPixel) {
           case STRIP1_STARTLED ... STRIP1_ENDLED:
@@ -917,6 +918,7 @@ public:
               break;
           #endif
         }
+        break;
     }
 
     uint8_t co = _colorOrder;
