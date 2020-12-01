@@ -34,13 +34,20 @@ void toggleOnOff()
 }
 
 
+//scales the brightness with the briMultiplier factor
+byte scaledBri(byte in)
+{
+  uint32_t d = in*briMultiplier;
+  uint32_t val = d/100;
+  if (val > 255) val = 255;
+  return (byte)val;
+}
+
+
 void setAllLeds() {
   if (!realtimeMode || !arlsForceMaxBri)
   {
-    double d = briT*briMultiplier;
-    int val = d/100;
-    if (val > 255) val = 255;
-    strip.setBrightness(val);
+    strip.setBrightness(scaledBri(briT));
   }
   if (useRGBW && strip.rgbwMode == RGBW_MODE_LEGACY)
   {
@@ -275,7 +282,7 @@ void handleNightlight()
       }
       updateBlynk();
       if (macroNl > 0)
-        applyMacro(macroNl);
+        applyPreset(macroNl);
       nightlightActiveOld = false;
     }
   } else if (nightlightActiveOld) //early de-init
@@ -296,9 +303,9 @@ void handleNightlight()
     if (bri == 0 || nightlightActive) return;
 
     if (presetCycCurr < presetCycleMin || presetCycCurr > presetCycleMax) presetCycCurr = presetCycleMin;
-    applyPreset(presetCycCurr,presetApplyBri);
+    applyPreset(presetCycCurr);
     presetCycCurr++;
-    if (presetCycCurr > 16) presetCycCurr = 1;
+    if (presetCycCurr > 250) presetCycCurr = 1;
     colorUpdated(NOTIFIER_CALL_MODE_PRESET_CYCLE);
   }
 }
