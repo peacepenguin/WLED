@@ -1,3 +1,36 @@
+# Multi pin is now built into WLED - this fork is no longer needed nor maintained 
+
+# See upstream install instructions:
+https://github.com/Aircoookie/WLED
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
 # MULTI PIN FORK - Install instructions here:
 
 https://github.com/peacepenguin/WLED/blob/master/installation.md
